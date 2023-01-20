@@ -48,10 +48,16 @@ export default class Ball {
     }
 
     update(delta, [player, computer], difficulty) {
+        if(this.x == undefined || this.y == undefined){ 
+            console.log("test"); 
+            this.x = 50; 
+            this.y = 50; 
+        }
+
         this.x += this.direction.x * this.velocity * delta;
         this.y += this.direction.y * this.velocity * delta;
         const rect = this.rect();
-
+        
         // if touches the top or bottom, flip direction and add speed
         if(rect.bottom >= window.innerHeight || rect.top <= window.innerHeight * 10 / 100){
             this.direction.y *= -1;
@@ -71,13 +77,18 @@ export default class Ball {
         if(rect.left <= 0){
             computerScore.innerHTML = parseInt(computerScore.innerHTML) + 1;
             this.reset(difficulty);
+
+            return 1;
         }
         // if ball touches the right end, reset and add point to player
         if(rect.right >= window.innerWidth){
             playerScore.innerHTML = parseInt(playerScore.innerHTML) + 1;
             this.reset(difficulty);
+
+            return 1;
         }
 
+        // if one side reached the matching point
         if(parseInt(playerScore.innerHTML) == 10 || parseInt(computerScore.innerHTML) == 10){
             if(parseInt(playerScore.innerHTML) == 10){
                 endText.innerText = "You WON!"
@@ -89,10 +100,10 @@ export default class Ball {
             endScreen.classList.remove("d-none");
             gameScreen.classList.add("d-none");
 
-            return true;
+            return 2;
         }
 
-        return false;
+        return 0;
     }
 } 
 function randomNumberBetween(min, max) {
