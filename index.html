@@ -50,11 +50,25 @@
 </head>
 <body style="height: 600; width: 800;" class="bg-secondary">
     <!-- Starting Screen -->
-    <div id="startingMenu" class="d-flex flex-column container gap-2 align-items-center" style="height: 100vh">
+    <div id="startingMenu" class="d-none d-flex flex-column container gap-2 align-items-center" style="height: 100vh">
         <img src="src/drawsvg.svg" alt="logo.png" style="height: 50vh;">
         <button id="startButton" class="btn btn-secondary" type="Button" style="width: 20vw;" >START</button>
         <button id="settingButton" class="btn btn-secondary" type="Button" style="width: 20vw;">SETTINGS</button>
         <button id="quitButton" class="btn btn-secondary" type="Button" style="width: 20vw;">QUIT</button>
+    </div>
+    <div id="settingScreen" class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div>
+            <h3>Difficulty</h3>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">2</label>
+              </div>
+            </div>
+        </div>
     </div>
     <!-- In Game Screen -->
     <div id="gameScreen" class="d-none">
@@ -79,6 +93,8 @@
                 <h2 class="text-white">|</h2>
                 <h2 id="computerEndScore" class="text-white flex-fill"></h2>
             </div>
+            <button id="tryAgainBtn" class="btn btn-secondary mt-5" type="button">Try Again?</button>
+            <button id="endQuitButton" class="btn btn-secondary m-3" type="button" >Quit</button>
         </div>
     </div>
 </body>
