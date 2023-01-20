@@ -47,9 +47,9 @@ function update(time) {
 // helper function for restarting new game
 function reset() {
     lastTime = null;
-    end = false;
+    status = 0;
 
-    playerScore.innerHTML = -1;
+    playerScore.innerHTML = 0;
     computerScore.innerHTML = 0;
 
     gameScreen.classList.remove("d-none");
