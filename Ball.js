@@ -78,14 +78,19 @@ export default class Ball {
             computerScore.innerHTML = parseInt(computerScore.innerHTML) + 1;
             this.reset(difficulty);
 
-            return 1;
+            if(parseInt(computerScore.innerHTML) < 10){
+                return 1;
+            }
+            
         }
         // if ball touches the right end, reset and add point to player
         if(rect.right >= window.innerWidth){
             playerScore.innerHTML = parseInt(playerScore.innerHTML) + 1;
             this.reset(difficulty);
 
-            return 1;
+            if(parseInt(playerScore.innerHTML) < 10){
+                return 1;
+            }
         }
 
         // if one side reached the matching point
