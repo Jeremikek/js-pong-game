@@ -1,5 +1,5 @@
-const INITIAL_VELOCITY = 1.025;
-const VELOCITY_INCREASE = 0.01;
+const INITIAL_VELOCITY = { "easy": 0.025, "medium": 0.040, "hard": 0.055 };
+const VELOCITY_INCREASE = { "easy": 0.01, "medium": 0.02, "hard": 0.03 };
 
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
@@ -36,7 +36,7 @@ export default class Ball {
     }
 
     // initial configuration
-    reset() {
+    reset(difficulty) {
         this.x = 50;
         this.y = 50;
         this.direction = { x: 0 };
@@ -44,10 +44,10 @@ export default class Ball {
             const heading = randomNumberBetween(0, 2 * Math.PI);
             this.direction = { x: Math.cos(heading), y: Math.sin(heading) }; 
         }
-        this.velocity = INITIAL_VELOCITY;
+        this.velocity = INITIAL_VELOCITY[`${difficulty}`];
     }
 
-    update(delta, [player, computer]) {
+    update(delta, [player, computer], difficulty) {
         this.x += this.direction.x * this.velocity * delta;
         this.y += this.direction.y * this.velocity * delta;
         const rect = this.rect();
@@ -55,7 +55,7 @@ export default class Ball {
         // if touches the top or bottom, flip direction and add speed
         if(rect.bottom >= window.innerHeight || rect.top <= window.innerHeight * 10 / 100){
             this.direction.y *= -1;
-            this.velocity += VELOCITY_INCREASE;
+            this.velocity += VELOCITY_INCREASE[`${difficulty}`];
         }
 
         // if touches the paddle, flip direction and add speed
@@ -64,18 +64,18 @@ export default class Ball {
             (rect.left <= player.right && (rect.bottom - player.top >= 0 && rect.top - player.bottom <= 0))
             ){
             this.direction.x *= -1;
-            this.velocity += VELOCITY_INCREASE;
+            this.velocity += VELOCITY_INCREASE[`${difficulty}`];
         }
 
         // if ball touches the left end, reset and add point to computer
         if(rect.left <= 0){
             computerScore.innerHTML = parseInt(computerScore.innerHTML) + 1;
-            this.reset();
+            this.reset(difficulty);
         }
         // if ball touches the right end, reset and add point to player
         if(rect.right >= window.innerWidth){
             playerScore.innerHTML = parseInt(playerScore.innerHTML) + 1;
-            this.reset();
+            this.reset(difficulty);
         }
 
         if(parseInt(playerScore.innerHTML) == 10 || parseInt(computerScore.innerHTML) == 10){
