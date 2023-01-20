@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import Ball from "./Ball.js"
 import Paddle from "./Paddle.js";
 
@@ -41,4 +39,3 @@ startButton.addEventListener("click", e => {
     window.requestAnimationFrame(update);
 });
 
->>>>>>> Stashed changes
