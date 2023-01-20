@@ -8,6 +8,7 @@ const quitButton = document.getElementById("quitButton");
 const settingScreen = document.getElementById("settingScreen");
 const settingSaveBtn = document.getElementById("settingSaveBtn");
 const gameScreen = document.getElementById("gameScreen");
+const readyScreen = document.getElementById("readyScreen");
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 const endScreen = document.getElementById("endScreen");
 const endQuitButton = document.getElementById("endQuitButton");
@@ -21,17 +22,24 @@ const cPaddle = new Paddle(document.getElementById("computerPaddle"));
 
 // game engine
 let lastTime;
-let end = false;
+let status = 0; // 0 - ongoing, 1 - readying, 2 - ended
 let difficulty = "easy";
 function update(time) {
     if(lastTime != null) {
         const delta = time - lastTime;
-        end = ball.update(delta, [pPaddle.rect(), cPaddle.rect()], difficulty)
-        cPaddle.update(delta, ball.y, difficulty);
+        if(status !== 1){
+            status = ball.update(delta, [pPaddle.rect(), cPaddle.rect()], difficulty)
+            cPaddle.update(delta, ball.y, difficulty);
+        }
     }
 
     lastTime = time;
-    if(end == false){
+    if(status === 1){
+        readyScreen.classList.remove("d-none");
+        window.requestAnimationFrame(update);
+    }
+
+    if(status === 0){
         window.requestAnimationFrame(update);
     } 
 }
@@ -41,7 +49,7 @@ function reset() {
     lastTime = null;
     end = false;
 
-    playerScore.innerHTML = 0;
+    playerScore.innerHTML = -1;
     computerScore.innerHTML = 0;
 
     gameScreen.classList.remove("d-none");
@@ -87,5 +95,10 @@ settingSaveBtn.addEventListener("click", () => {
     startingMenu.classList.remove("d-none");
 
     
+});
+
+readyScreen.addEventListener("click", () => {
+    readyScreen.classList.add("d-none");
+    status = 0;
 });
 
