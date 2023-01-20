@@ -4,6 +4,14 @@ import Paddle from "./Paddle.js";
 const startingMenu = document.getElementById("startingMenu");
 const gameScreen = document.getElementById("gameScreen");
 const startButton = document.getElementById("startButton");
+const settingButton = document.getElementById("settingButton");
+const quitButton = document.getElementById("quitButton");
+const tryAgainBtn = document.getElementById("tryAgainBtn");
+const endScreen = document.getElementById("endScreen");
+const endQuitButton = document.getElementById("endQuitButton");
+
+const playerScore = document.getElementById("playerScore");
+const computerScore = document.getElementById("computerScore");
 
 const ball = new Ball(document.getElementById("ball"));
 const pPaddle = new Paddle(document.getElementById("playerPaddle"));
@@ -11,7 +19,7 @@ const cPaddle = new Paddle(document.getElementById("computerPaddle"));
 
 // game engine
 let lastTime;
-let end;
+let end = false;
 function update(time) {
     if(lastTime != null) {
         const delta = time - lastTime;
@@ -20,9 +28,21 @@ function update(time) {
     }
 
     lastTime = time;
-    if(end !== false){
+    if(end == false){
         window.requestAnimationFrame(update);
     } 
+}
+
+// helper function for restarting new game
+function reset() {
+    lastTime = null;
+    end = false;
+
+    playerScore.innerHTML = 0;
+    computerScore.innerHTML = 0;
+
+    gameScreen.classList.remove("d-none");
+    endScreen.classList.add("d-none");
 }
 
 // move paddle with mouse
@@ -37,5 +57,18 @@ startButton.addEventListener("click", e => {
     gameScreen.classList.remove("d-none");
     
     window.requestAnimationFrame(update);
+});
+
+tryAgainBtn.addEventListener("click", e => {
+    reset();
+    window.requestAnimationFrame(update);
+});
+
+quitButton.addEventListener("click", () => {
+    window.program.quit();
+});
+
+endQuitButton.addEventListener("click", () => { 
+    window.program.quit();
 });
 
