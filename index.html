@@ -81,7 +81,7 @@
     <!-- In Game Screen -->
     <div id="gameScreen" class="d-none">
         <div id="ultilityBar" class="bg-dark d-flex justify-content-center gap-5 align-items-center" style="height: 10vh;">
-            <h2 id="playerScore" class="score text-white">0</h2>
+            <h2 id="playerScore" class="score text-white">-1</h2>
             <h2 class="text-white">|</h2>
             <h2 id="computerScore" class="score text-white">0</h2>
         </div>
@@ -89,6 +89,12 @@
             <div id="playerPaddle" class="bg-dark rounded-3"></div>
             <div id="computerPaddle" class="bg-dark rounded-3"></div>
             <div id="ball" class="rounded-circle bg-dark"></div>
+        </div>
+    </div>
+    <!-- Ready Screen -->
+    <div id="readyScreen" class="d-none bg-dark position-absolute top-0 start-0" style="height: 100vh; width: 100vw; filter: opacity(0.9); z-index: 10;">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <h1 class="text-white">Press Any Key To Start.</h1>
         </div>
     </div>
     <!-- Game Over Screen -->
