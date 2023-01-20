@@ -89,8 +89,10 @@ export default class Ball {
             endScreen.classList.remove("d-none");
             gameScreen.classList.add("d-none");
 
-            return false;
+            return true;
         }
+
+        return false;
     }
 } 
 function randomNumberBetween(min, max) {
