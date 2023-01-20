@@ -4,15 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="renderer.js" defer></script>
+    <script src="renderer.js" type="module" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Document</title>
+<<<<<<< Updated upstream
+=======
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #ball {
+            --x: 50;
+            --y: 50;
+
+            position: absolute;
+            top: calc(var(--y) * 1vh);
+            left: calc(var(--x) * 1vw);
+            transform: translate(-50%, -50%);
+            width: 3vw;
+            height: 3vw;
+        }
+
+        #playerPaddle {
+            --position: 50;
+
+            position: absolute;
+            top: calc(var(--position) * 1vh);
+            left: 3%;
+            transform: translateY(-50%);
+            width: 2vw;
+            height: 15vh;
+        }
+
+        #computerPaddle {
+            --position: 50;
+            
+            position: absolute;
+            top: calc(var(--position) * 1vh);
+            right: 3%;
+            transform: translateY(-50%);
+            width: 2vw; 
+            height: 15vh;
+        }
+    </style>
+>>>>>>> Stashed changes
 </head>
 <body style="height: 600; width: 800;" class="bg-secondary">
-    <div id="ultilityBar" class="bg-dark" style="height: 10vh">
-
+    <!-- Starting Screen -->
+    <div id="startingMenu" class="d-flex flex-column container gap-2 align-items-center" style="height: 100vh">
+        <img src="src/drawsvg.svg" alt="logo.png" style="height: 50vh;">
+        <button id="startButton" class="btn btn-secondary" type="Button" style="width: 20vw;" >START</button>
+        <button id="settingButton" class="btn btn-secondary" type="Button" style="width: 20vw;">SETTINGS</button>
+        <button id="quitButton" class="btn btn-secondary" type="Button" style="width: 20vw;">QUIT</button>
     </div>
+<<<<<<< Updated upstream
     <div id="gameField" style="height: 90vh">
         <div id="playerPaddle" class="bg-dark roudned-3" style="width: 3vw; height: 15vh;">
 
@@ -22,6 +69,31 @@
         </div>
         <div id="ball" class="rounded-circle bg-dark" style="width: 5vw; height: 5vw;">
 
+=======
+    <!-- In Game Screen -->
+    <div id="gameScreen" class="d-none">
+        <div id="ultilityBar" class="bg-dark d-flex justify-content-center gap-5 align-items-center" style="height: 10vh;">
+            <h2 id="playerScore" class="score text-white">0</h2>
+            <h2 class="text-white">|</h2>
+            <h2 id="computerScore" class="score text-white">0</h2>
+        </div>
+        <div id="gameField" style="height: 90vh">
+            <div id="playerPaddle" class="bg-dark rounded-3"></div>
+            <div id="computerPaddle" class="bg-dark rounded-3"></div>
+            <div id="ball" class="rounded-circle bg-dark"></div>
+        </div>
+    </div>
+    <!-- Game Over Screen -->
+    <div id="endScreen" class="d-none d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="d-flex flex-column align-items-center">
+            <h1 id="endText" class="text-white">You Won!</h1>
+            <h2 class="text-white">Score:</h2>
+            <div class="d-flex flex-row gap-3 container">
+                <h2 id="playerEndScore" class="text-white flex-fill text-end"></h2>
+                <h2 class="text-white">|</h2>
+                <h2 id="computerEndScore" class="text-white flex-fill"></h2>
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
 </body>
