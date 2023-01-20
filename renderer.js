@@ -2,10 +2,12 @@ import Ball from "./Ball.js"
 import Paddle from "./Paddle.js";
 
 const startingMenu = document.getElementById("startingMenu");
-const gameScreen = document.getElementById("gameScreen");
 const startButton = document.getElementById("startButton");
 const settingButton = document.getElementById("settingButton");
 const quitButton = document.getElementById("quitButton");
+const settingScreen = document.getElementById("settingScreen");
+const settingSaveBtn = document.getElementById("settingSaveBtn");
+const gameScreen = document.getElementById("gameScreen");
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 const endScreen = document.getElementById("endScreen");
 const endQuitButton = document.getElementById("endQuitButton");
@@ -20,11 +22,12 @@ const cPaddle = new Paddle(document.getElementById("computerPaddle"));
 // game engine
 let lastTime;
 let end = false;
+let difficulty = "easy";
 function update(time) {
     if(lastTime != null) {
         const delta = time - lastTime;
-        end = ball.update(delta, [pPaddle.rect(), cPaddle.rect()])
-        cPaddle.update(delta, ball.y);
+        end = ball.update(delta, [pPaddle.rect(), cPaddle.rect()], difficulty)
+        cPaddle.update(delta, ball.y, difficulty);
     }
 
     lastTime = time;
@@ -70,5 +73,19 @@ quitButton.addEventListener("click", () => {
 
 endQuitButton.addEventListener("click", () => { 
     window.program.quit();
+});
+
+settingButton.addEventListener("click", () => {
+    startingMenu.classList.add("d-none");
+    settingScreen.classList.remove("d-none");
+});
+
+settingSaveBtn.addEventListener("click", () => {
+    difficulty = document.querySelector('input[name="difficultyOptions"]:checked').value;
+
+    settingScreen.classList.add("d-none");
+    startingMenu.classList.remove("d-none");
+
+    
 });
 
