@@ -1,4 +1,4 @@
-const SPEED = 0.050;
+const SPEED = { "easy": 0.050, "medium": 0.150, "hard": 0.250 };
 
 export default class Paddle {
     constructor(pElem) {
@@ -17,11 +17,11 @@ export default class Paddle {
         return this.pElem.getBoundingClientRect();
     }
 
-    update(delta, y) {
+    update(delta, y, difficulty) {
         if(this.position < y){
-            this.position += SPEED * delta;
+            this.position += SPEED[`${difficulty}`] * delta;
         }else{
-            this.position -= SPEED * delta;
+            this.position -= SPEED[`${difficulty}`] * delta;
         }
     }
 }
