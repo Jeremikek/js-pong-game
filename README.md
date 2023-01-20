@@ -1,6 +1,6 @@
 # js-pong-game
 
-A simple and minimalistic pong game exercise made with javascript. Made with electron js thus, it runs on desktop. The game offers 3 difficulty, whereby the speed of the ball and computer is adjusted accordingly. The speed of the ball will increase whenever the ball bounces off the walls or paddle. 
+A simple and minimalistic pong game exercise made with javascript. Made with electron js thus, it runs on desktop. The user control their paddle with their mouse's movemenet and try to win against the computer. The game offers 3 difficulty, whereby the speed of the ball and computer is adjusted accordingly. The speed of the ball will increase whenever the ball bounces off the walls or paddle. 
 
 <details><summary>Screenshots</summary>
 
